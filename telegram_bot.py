@@ -35,10 +35,10 @@ async def riesgo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Uso: /riesgo SYMBOL CANTIDAD PRECIO\nEjemplo: /riesgo RIOT 35 8.80")
 
 if __name__ == '__main__':
-import os
-from dotenv import load_dotenv
-load_dotenv()
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+    import os
+    from dotenv import load_dotenv
+    load_dotenv()
+    BOT_TOKEN = os.getenv("BOT_TOKEN")
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("rotar", rotar))
     app.add_handler(CommandHandler("moonshot", moonshot))
