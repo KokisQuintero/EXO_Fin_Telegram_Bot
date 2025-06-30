@@ -6,10 +6,11 @@ nixPkgs = ["python311"]
 
 [phases.install]
 cmds = [
-  "curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py",
-  "python3 get-pip.py",
-  "pip install -r requirements.txt"
+  "python3 -m venv venv",
+  ". venv/bin/activate",
+  "venv/bin/pip install --upgrade pip",
+  "venv/bin/pip install -r requirements.txt"
 ]
 
 [start]
-cmd = "python3 main.py"
+cmd = "venv/bin/python main.py"
