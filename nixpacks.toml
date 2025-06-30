@@ -1,11 +1,15 @@
+[build]
+nixpacksVersion = 1
+
 [phases.setup]
-nixPkgs = ["python311", "git"]
+nixPkgs = ["python311Full"]
 
 [phases.install]
-cmds = ["pip install --upgrade pip", "pip install -r requirements.txt"]
-
-[phases.build]
-cmds = []
+cmds = [
+  "python3 -m ensurepip",
+  "python3 -m pip install --upgrade pip",
+  "python3 -m pip install -r requirements.txt"
+]
 
 [start]
 cmd = "python3 main.py"
