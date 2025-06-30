@@ -5,8 +5,10 @@ from main_dispatcher import ejecutar_comando
 import os
 from dotenv import load_dotenv
 load_dotenv()
-BOT_TOKEN = os.getenv("7951666390:AAGoeuG-mm35mZzvcm7JamCmqfmIPXwK8EI")
-CHAT_ID = os.getenv("C5812077779")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+if not BOT_TOKEN:
+    raise Exception("❌ BOT_TOKEN no encontrado. Revisa tus variables de entorno en Railway.")
+CHAT_ID = os.getenv("CHAT_ID")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🤖 EXO-FIN está listo. Usa /rotar, /riesgo, /moonshot o /autocritica")
@@ -37,16 +39,14 @@ async def riesgo(update: Update, context: ContextTypes.DEFAULT_TYPE):
 if __name__ == '__main__':
     import os
     from dotenv import load_dotenv
-    load_dotenv()
-    BOT_TOKEN = os.getenv("BOT_TOKEN")
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("rotar", rotar))
-    app.add_handler(CommandHandler("moonshot", moonshot))
-    app.add_handler(CommandHandler("autocritica", autocritica))
-    app.add_handler(CommandHandler("riesgo", riesgo))
+load_dotenv()
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+if not BOT_TOKEN:
+    raise Exception("❌ BOT_TOKEN no encontrado. Revisa tus variables de entorno en Railway.")
     print("🤖 Bot activo...")
-    app.run_polling()
+
 def main():
+    from telegram.ext import ApplicationBuilder
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
